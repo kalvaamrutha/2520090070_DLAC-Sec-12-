@@ -1,0 +1,23 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv
+.venv/
+venv/
+ENV/
+env/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Large weights (keep model directory structure, exclude large checkpoints if > 50MB)
+*.tar.gz
+*.zip
+
+# Temporary files
+*.tmp
+*.log

@@ -1,0 +1,3 @@
+[2026-11-12 19:38:08] Alert Status: ACTIVE | Vehicles: 3 | Threshold: 3 | Image: images/traffic_congested.jpg
+[2026-11-12 19:42:34] Alert Status: ACTIVE | Vehicles: 3 | Threshold: 3 | Image: images/traffic_congested.jpg
+[2026-11-12 19:47:40] Alert Status: ACTIVE | Vehicles: 3 | Threshold: 3 | Image: images/traffic_congested.jpg

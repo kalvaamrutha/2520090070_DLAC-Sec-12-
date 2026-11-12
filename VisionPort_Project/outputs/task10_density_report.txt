@@ -1,0 +1,7 @@
+VisionPort Traffic Density Analysis Report
+--------------------------------------------------
+Analyzed Image        : images/traffic_street.jpg
+Vehicle Count         : 3
+Traffic Density Level : LOW
+Status Description    : Free Flow / Light Traffic
+Classification Bounds : Low (0-3), Medium (4-7), High (8+)

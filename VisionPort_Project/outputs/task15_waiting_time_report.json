@@ -1,0 +1,9 @@
+{
+    "total_wait_seconds": 44.7,
+    "queue_discharge_sec": 9.7,
+    "signal_base_delay_sec": 35.0,
+    "traffic_density": "LOW",
+    "density_multiplier": 1.0,
+    "total_vehicles": 3,
+    "signal_state": "RED"
+}

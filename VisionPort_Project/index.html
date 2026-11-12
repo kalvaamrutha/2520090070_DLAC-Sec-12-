@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisionPort Live Portal: Indian Traffic Analyzer</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-green: #22c55e;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-purple: #a855f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 24px 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .visionport-container {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    header {
+      text-align: center;
+      padding: 16px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Congestion Alert Banner */
+    .congestion-alert-banner {
+      display: none;
+      background: linear-gradient(90deg, #b91c1c, #dc2626);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      animation: pulse 1.8s infinite;
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.01); }
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-blue);
+    }
+
+    .card strong {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card span.value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .status-online {
+      color: var(--accent-green);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-online::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background-color: var(--accent-green);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .badge-low { background: rgba(34, 197, 94, 0.2); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .badge-medium { background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+    .badge-high { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid var(--accent-red); }
+
+    /* Quick Test Bar */
+    .quick-samples {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quick-samples span {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .btn-sample {
+      background: #334155;
+      color: #f1f5f9;
+      border: 1px solid #475569;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-sample:hover {
+      background: var(--accent-blue);
+      color: #0f172a;
+      border-color: var(--accent-blue);
+    }
+
+    /* Workspace */
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .upload-section {
+      background: var(--card-bg);
+      border: 2px dashed var(--border-color);
+      border-radius: 12px;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 260px;
+    }
+
+    .upload-section:hover {
+      border-color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.05);
+    }
+
+    .upload-section h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .upload-section p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    #traffic-uploader {
+      display: none;
+    }
+
+    .btn-upload {
+      background: var(--accent-blue);
+      color: #0f172a;
+      padding: 10px 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-upload:hover {
+      background: #7dd3fc;
+    }
+
+    /* Results Display */
+    .results-display {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .view-panel {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      height: 100%;
+    }
+
+    .view-panel h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .img-container {
+      position: relative;
+      width: 100%;
+      min-height: 380px;
+      background: #090d16;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #output-preview {
+      max-width: 100%;
+      max-height: 540px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 6px;
+      transition: opacity 0.25s ease;
+    }
+
+    .spinner {
+      display: none;
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(56, 189, 248, 0.2);
+      border-top-color: var(--accent-blue);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Vehicle Breakdown Chips */
+    .breakdown-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 8px;
+    }
+
+    .chip {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #cbd5e1;
+    }
+
+    .chip b {
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="visionport-container">
+  <header>
+    <h1>VisionPort Live Portal: Indian Traffic Analyzer</h1>
+    <p>Upload a street snapshot to see deep learning inference, vehicle tracking, and waiting time telemetry instantly.</p>
+  </header>
+
+  <!-- Congestion Alert Notification -->
+  <div id="congestion-alert" class="congestion-alert-banner">
+    ⚠️ CONGESTION ALERT: Junction Overcapacity Detected! High density of vehicles queued at signal.
+  </div>
+
+  <!-- Status Cards -->
+  <div class="metrics-grid">
+    <div class="card">
+      <strong>System Status</strong>
+      <span class="value status-online">Active</span>
+    </div>
+    <div class="card">
+      <strong>Model Architecture</strong>
+      <span class="value" style="font-size: 1.1rem;">YOLOv8 Nano</span>
+    </div>
+    <div class="card">
+      <strong>Inference Latency</strong>
+      <span id="metric-latency" class="value">~35ms</span>
+    </div>
+    <div class="card">
+      <strong>Total Vehicles</strong>
+      <span id="metric-vehicles" class="value">0</span>
+    </div>
+    <div class="card">
+      <strong>Traffic Density</strong>
+      <span id="metric-density" class="badge badge-low">LOW</span>
+    </div>
+    <div class="card">
+      <strong>Signal Status</strong>
+      <span id="metric-signal" class="value" style="font-size: 1.1rem; color: #ef4444;">🔴 RED</span>
+    </div>
+    <div class="card">
+      <strong>Est. Waiting Time</strong>
+      <span id="metric-waittime" class="value" style="color: #38bdf8;">0.0s</span>
+    </div>
+  </div>
+
+  <!-- Quick Test Samples Toolbar -->
+  <div class="quick-samples">
+    <span>Quick Test Samples:</span>
+    <button class="btn-sample" onclick="loadSample('sample1')">🚗 Free-Flow Street</button>
+    <button class="btn-sample" onclick="loadSample('sample2')">🚨 Heavy Congestion</button>
+    <button class="btn-sample" onclick="loadSample('sample3')">🚦 Traffic Signal</button>
+    <button class="btn-sample" onclick="loadSample('sample4')">🚌 Urban Bus & Commuters</button>
+  </div>
+
+  <!-- Main Interface -->
+  <div class="workspace">
+    <div class="upload-section" onclick="document.getElementById('traffic-uploader').click()">
+      <h3>Drop Traffic Image Here</h3>
+      <p>Supports JPG, PNG, WEBP street snapshots</p>
+      <button type="button" class="btn-upload">Browse File</button>
+      <input type="file" id="traffic-uploader" accept="image/*" onchange="processImage(event)" />
+    </div>
+
+    <div class="results-display">
+      <div class="view-panel">
+        <h4>
+          <span>Live Output Stream</span>
+          <span id="fps-counter" style="font-size: 0.82rem; color: var(--text-muted);">Ready</span>
+        </h4>
+        <div class="img-container">
+          <div id="loading-spinner" class="spinner"></div>
+          <img id="output-preview" src="/images/traffic_street.jpg" alt="Inference Output" />
+        </div>
+        <div class="breakdown-chips" id="breakdown-container">
+          <span class="chip">Cars: <b id="cnt-car">0</b></span>
+          <span class="chip">Bikes: <b id="cnt-bike">0</b></span>
+          <span class="chip">Buses: <b id="cnt-bus">0</b></span>
+          <span class="chip">Trucks: <b id="cnt-truck">0</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Process user file upload
+  async function processImage(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const outputImg = document.getElementById("output-preview");
+    const spinner = document.getElementById("loading-spinner");
+    outputImg.style.opacity = "0.3";
+    spinner.style.display = "block";
+
+    try {
+      const response = await fetch("/detect/", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) throw new Error("Inference failed with status " + response.status);
+
+      // Read response telemetry headers
+      const totalVehicles = response.headers.get("X-Total-Vehicles") || "0";
+      const density = response.headers.get("X-Traffic-Density") || "LOW";
+      const isCongested = response.headers.get("X-Congestion-Alert") === "True";
+      const signalStatus = response.headers.get("X-Signal-Status") || "UNKNOWN";
+      const waitTime = response.headers.get("X-Estimated-Wait-Time") || "0.0";
+      const latency = response.headers.get("X-Inference-Latency") || "~35ms";
+
+      updateTelemetryUI({
+        total: totalVehicles,
+        density: density,
+        congested: isCongested,
+        signal: signalStatus,
+        waitTime: waitTime,
+        latency: latency
+      });
+
+      // Stream the processed image blob back
+      const blob = await response.blob();
+      outputImg.src = URL.createObjectURL(blob);
+    } catch (error) {
+      alert("Error contacting the deep learning backend: " + error.message);
+    } finally {
+      outputImg.style.opacity = "1";
+      spinner.style.display = "none";
+    }
+  }
+
+  // Load predefined sample image
+  async function loadSample(sampleName) {
+    const outputImg = document.getElementById("output-preview");
+    const spinner = document.getElementById("loading-spinner");
+    outputImg.style.opacity = "0.3";
+    spinner.style.display = "block";
+
+    try {
+      const response = await fetch(`/sample/${sampleName}`);
+      if (!response.ok) throw new Error("Sample fetch failed");
+
+      const totalVehicles = response.headers.get("X-Total-Vehicles") || "0";
+      const density = response.headers.get("X-Traffic-Density") || "LOW";
+      const isCongested = response.headers.get("X-Congestion-Alert") === "True";
+      const signalStatus = response.headers.get("X-Signal-Status") || "UNKNOWN";
+      const waitTime = response.headers.get("X-Estimated-Wait-Time") || "0.0";
+
+      updateTelemetryUI({
+        total: totalVehicles,
+        density: density,
+        congested: isCongested,
+        signal: signalStatus,
+        waitTime: waitTime,
+        latency: "~38ms"
+      });
+
+      const blob = await response.blob();
+      outputImg.src = URL.createObjectURL(blob);
+    } catch (e) {
+      alert("Error loading sample: " + e.message);
+    } finally {
+      outputImg.style.opacity = "1";
+      spinner.style.display = "none";
+    }
+  }
+
+  function updateTelemetryUI(data) {
+    document.getElementById("metric-vehicles").innerText = data.total;
+    document.getElementById("metric-latency").innerText = data.latency;
+    document.getElementById("metric-waittime").innerText = data.waitTime + "s";
+
+    // Update Density Badge
+    const densityBadge = document.getElementById("metric-density");
+    densityBadge.innerText = data.density;
+    densityBadge.className = "badge " + (
+      data.density === "HIGH" ? "badge-high" :
+      data.density === "MEDIUM" ? "badge-medium" : "badge-low"
+    );
+
+    // Update Signal Status
+    const sigElem = document.getElementById("metric-signal");
+    if (data.signal === "RED") {
+      sigElem.innerHTML = "🔴 RED";
+      sigElem.style.color = "#ef4444";
+    } else if (data.signal === "YELLOW") {
+      sigElem.innerHTML = "🟡 YELLOW";
+      sigElem.style.color = "#f59e0b";
+    } else if (data.signal === "GREEN") {
+      sigElem.innerHTML = "🟢 GREEN";
+      sigElem.style.color = "#22c55e";
+    } else {
+      sigElem.innerHTML = "⚪ " + data.signal;
+      sigElem.style.color = "#94a3b8";
+    }
+
+    // Congestion Alert Banner
+    const banner = document.getElementById("congestion-alert");
+    banner.style.display = data.congested ? "block" : "none";
+  }
+
+  // Initial sample test on load
+  window.addEventListener("DOMContentLoaded", () => {
+    loadSample("sample1");
+  });
+</script>
+
+</body>
+</html>

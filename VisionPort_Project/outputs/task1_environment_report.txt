@@ -1,0 +1,12 @@
+VisionPort Python Environment Diagnostic Report
+Generated: 3.14.6 (v3.14.6:c63aec69bd5, Jun 10 2026, 08:07:54) [Clang 21.0.0 (clang-2100.1.1.101)]
+--------------------------------------------------
+[PASS] OpenCV            : 5.0.0
+[PASS] PyTorch           : 2.15.0
+[PASS] TorchVision       : 0.29.2
+[PASS] Ultralytics YOLO  : 8.4.211
+[PASS] NumPy             : 2.5.4
+[PASS] Pillow            : 13.0.0
+[PASS] FastAPI           : 0.162.5
+[PASS] Uvicorn           : 0.54.0
+Inference Device   : Apple Silicon MPS (Metal Performance Shaders)
