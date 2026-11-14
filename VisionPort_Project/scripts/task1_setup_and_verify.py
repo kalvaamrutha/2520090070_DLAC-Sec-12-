@@ -53,8 +53,6 @@ try:
     
     out_path = "outputs/task1_opencv_test.jpg"
     cv2.imwrite(out_path, test_img)
-    # Also save to root if needed for direct access
-    cv2.imwrite("task1_opencv_test.jpg", test_img)
     print(f"\n[PASSED] Generated OpenCV test image: {out_path}")
 except Exception as e:
     print(f"\n[FAILED] OpenCV image generation error: {e}")
