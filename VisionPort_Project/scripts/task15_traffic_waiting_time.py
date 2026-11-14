@@ -12,6 +12,7 @@ print("=" * 60)
 print("VisionPort Task 15: Estimate Traffic Waiting Time")
 print("=" * 60)
 
+os.makedirs("outputs", exist_ok=True)
 CLEARANCE_WEIGHTS = {
     "car": 2.5,
     "motorcycle": 1.5,
@@ -20,12 +21,15 @@ CLEARANCE_WEIGHTS = {
     "truck": 6.0
 }
 
-input_img = "sample_traffic.jpg"
-if not os.path.exists(input_img):
-    input_img = "images/traffic_street.jpg"
+input_imgs = ["images/sample_traffic.jpg", "sample_traffic.jpg", "images/traffic_street.jpg"]
+img = None
+for p in input_imgs:
+    if os.path.exists(p):
+        img = cv2.imread(p)
+        input_img = p
+        break
 
 model = YOLO("yolov8n.pt")
-img = cv2.imread(input_img)
 results = model(img, verbose=False, conf=0.25)
 annotated = img.copy()
 
@@ -56,11 +60,11 @@ cv2.putText(annotated, f"Est. Wait Time: {total_wait_time}s", (35, 85),
 cv2.putText(annotated, f"Vehicles: {total_vehicles} | Signal: {signal_state}", (35, 115),
             cv2.FONT_HERSHEY_SIMPLEX, 0.45, (200, 200, 200), 1)
 
-out_img = "task15_waiting_time.jpg"
+out_img = "outputs/task15_waiting_time.jpg"
 cv2.imwrite(out_img, annotated)
 
 # Save text report
-report_file = "task15_waiting_time_report.txt"
+report_file = "outputs/task15_waiting_time_report.txt"
 with open(report_file, "w") as f:
     f.write("=" * 60 + "\n")
     f.write("      VISIONPORT JUNCTION WAITING-TIME REPORT      \n")

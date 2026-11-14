@@ -3,6 +3,7 @@ Expected Output: Working Python Environment Verification
 Task 1: Install Python, OpenCV and required libraries.
 """
 import sys
+import os
 import importlib
 import numpy as np
 
@@ -44,12 +45,17 @@ for module_name, display_name in required_libraries:
 # OpenCV Test Image Generation
 try:
     import cv2
+    os.makedirs("outputs", exist_ok=True)
     test_img = np.zeros((300, 500, 3), dtype=np.uint8)
     test_img[:] = (30, 30, 30)
     cv2.putText(test_img, "OpenCV Working Successfully!", (30, 150),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+    
+    out_path = "outputs/task1_opencv_test.jpg"
+    cv2.imwrite(out_path, test_img)
+    # Also save to root if needed for direct access
     cv2.imwrite("task1_opencv_test.jpg", test_img)
-    print("\n[PASSED] Generated OpenCV test image: task1_opencv_test.jpg")
+    print(f"\n[PASSED] Generated OpenCV test image: {out_path}")
 except Exception as e:
     print(f"\n[FAILED] OpenCV image generation error: {e}")
     all_passed = False

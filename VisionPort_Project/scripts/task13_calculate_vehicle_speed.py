@@ -12,9 +12,13 @@ print("=" * 60)
 print("VisionPort Task 13: Calculate Approximate Vehicle Speed")
 print("=" * 60)
 
-video_path = "traffic_sample.mp4"
-if not os.path.exists(video_path):
-    video_path = "videos/traffic_demo.mp4"
+os.makedirs("outputs", exist_ok=True)
+video_paths = ["videos/traffic_sample.mp4", "traffic_sample.mp4", "videos/traffic_demo.mp4"]
+video_path = None
+for p in video_paths:
+    if os.path.exists(p):
+        video_path = p
+        break
 
 model = YOLO("yolov8n.pt")
 cap = cv2.VideoCapture(video_path)
@@ -74,7 +78,7 @@ while cap.isOpened() and frame_idx < 120:
 
 cap.release()
 
-out_file = "task13_speed_estimation.jpg"
+out_file = "outputs/task13_speed_estimation.jpg"
 if last_frame is not None:
     cv2.imwrite(out_file, last_frame)
 

@@ -11,14 +11,18 @@ print("=" * 60)
 print("VisionPort Task 11: Detect Traffic Congestion at Signal Junctions")
 print("=" * 60)
 
+os.makedirs("outputs", exist_ok=True)
 VEHICLE_CLASSES = {"bicycle", "car", "motorcycle", "bus", "truck"}
 model = YOLO("yolov8n.pt")
 
-input_img = "images/traffic_congested.jpg"
-if not os.path.exists(input_img):
-    input_img = "sample_traffic.jpg"
+input_imgs = ["images/traffic_congested.jpg", "images/sample_traffic.jpg", "sample_traffic.jpg"]
+img = None
+for p in input_imgs:
+    if os.path.exists(p):
+        img = cv2.imread(p)
+        input_img = p
+        break
 
-img = cv2.imread(input_img)
 results = model(img, verbose=False, conf=0.25)
 annotated = img.copy()
 
@@ -45,7 +49,7 @@ else:
     cv2.putText(annotated, f"Junction Status: Normal Traffic ({vehicles} vehicles)",
                 (15, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
 
-out_file = "task11_congestion_alert.jpg"
+out_file = "outputs/task11_congestion_alert.jpg"
 cv2.imwrite(out_file, annotated)
 print(f"Junction Vehicle Count  : {vehicles}")
 print(f"Congestion Alert Status : {alert_status}")

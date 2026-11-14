@@ -1,6 +1,6 @@
 """
 VisionPort Master Runner
-Executes all 15 student tasks sequentially and validates their expected outputs.
+Executes all 15 student tasks sequentially and validates their expected outputs in outputs/.
 """
 import sys
 import subprocess
@@ -8,21 +8,21 @@ import time
 import os
 
 TASKS = [
-    (1,  "Environment Verification",       "task1_setup_and_verify.py",         "task1_opencv_test.jpg"),
-    (2,  "Traffic Image Capture",          "task2_capture_traffic_signal.py",   "captured_traffic_signal.jpg"),
-    (3,  "Read & Display Traffic Image",   "task3_read_display_traffic_image.py","task3_display_output.jpg"),
-    (4,  "Load & Play Traffic Video",      "task4_load_play_traffic_video.py",  "task4_playback_preview.jpg"),
-    (5,  "Extract Video Frames",           "task5_extract_video_frames.py",     "extracted_frames/frame_0001.jpg"),
-    (6,  "Detect Cars with YOLO",          "task6_detect_cars.py",              "task6_cars_detected.jpg"),
-    (7,  "Detect Multiple Vehicles",       "task7_detect_multiple_vehicles.py", "task7_multiple_vehicles.jpg"),
-    (8,  "Display Labels & Confidence",    "task8_display_labels_confidence.py","task8_labelled_detections.jpg"),
-    (9,  "Vehicle Counting",               "task9_count_vehicles.py",           "task9_vehicle_count.jpg"),
-    (10, "Traffic Density Calculation",    "task10_traffic_density.py",         "task10_traffic_density.jpg"),
-    (11, "Junction Congestion Alerts",     "task11_traffic_congestion.py",      "task11_congestion_alert.jpg"),
-    (12, "Vehicle Tracking IDs",           "task12_track_vehicles.py",          "task12_vehicle_tracking.jpg"),
-    (13, "Speed Estimation",               "task13_calculate_vehicle_speed.py", "task13_speed_estimation.jpg"),
-    (14, "Traffic Signal Identification",  "task14_traffic_signal_status.py",   "task14_signal_status.jpg"),
-    (15, "Waiting-Time Estimation Report", "task15_traffic_waiting_time.py",    "task15_waiting_time_report.txt"),
+    (1,  "Environment Verification",       "scripts/task1_setup_and_verify.py",         "outputs/task1_opencv_test.jpg"),
+    (2,  "Traffic Image Capture",          "scripts/task2_capture_traffic_signal.py",   "outputs/captured_traffic_signal.jpg"),
+    (3,  "Read & Display Traffic Image",   "scripts/task3_read_display_traffic_image.py","outputs/task3_display_output.jpg"),
+    (4,  "Load & Play Traffic Video",      "scripts/task4_load_play_traffic_video.py",  "outputs/task4_playback_preview.jpg"),
+    (5,  "Extract Video Frames",           "scripts/task5_extract_video_frames.py",     "extracted_frames/frame_0001.jpg"),
+    (6,  "Detect Cars with YOLO",          "scripts/task6_detect_cars.py",              "outputs/task6_cars_detected.jpg"),
+    (7,  "Detect Multiple Vehicles",       "scripts/task7_detect_multiple_vehicles.py", "outputs/task7_multiple_vehicles.jpg"),
+    (8,  "Display Labels & Confidence",    "scripts/task8_display_labels_confidence.py","outputs/task8_labelled_detections.jpg"),
+    (9,  "Vehicle Counting",               "scripts/task9_count_vehicles.py",           "outputs/task9_vehicle_count.jpg"),
+    (10, "Traffic Density Calculation",    "scripts/task10_traffic_density.py",         "outputs/task10_traffic_density.jpg"),
+    (11, "Junction Congestion Alerts",     "scripts/task11_traffic_congestion.py",      "outputs/task11_congestion_alert.jpg"),
+    (12, "Vehicle Tracking IDs",           "scripts/task12_track_vehicles.py",          "outputs/task12_vehicle_tracking.jpg"),
+    (13, "Speed Estimation",               "scripts/task13_calculate_vehicle_speed.py", "outputs/task13_speed_estimation.jpg"),
+    (14, "Traffic Signal Identification",  "scripts/task14_traffic_signal_status.py",   "outputs/task14_signal_status.jpg"),
+    (15, "Waiting-Time Estimation Report", "scripts/task15_traffic_waiting_time.py",    "outputs/task15_waiting_time_report.txt"),
 ]
 
 def run_pipeline():

@@ -10,13 +10,17 @@ print("=" * 60)
 print("VisionPort Task 6: Detect Cars Using YOLO")
 print("=" * 60)
 
+os.makedirs("outputs", exist_ok=True)
 model = YOLO("yolov8n.pt")
-input_img = "sample_traffic.jpg"
-if not os.path.exists(input_img):
-    input_img = "images/traffic_street.jpg"
+input_imgs = ["images/sample_traffic.jpg", "sample_traffic.jpg", "images/traffic_street.jpg"]
+img = None
+for p in input_imgs:
+    if os.path.exists(p):
+        img = cv2.imread(p)
+        input_img = p
+        break
 
 print(f"Running YOLO inference on {input_img}...")
-img = cv2.imread(input_img)
 results = model(img, verbose=False, conf=0.25)
 
 annotated = img.copy()
@@ -39,7 +43,7 @@ for box in results[0].boxes:
 cv2.putText(annotated, f"Task 6: Cars Detected = {car_count}", (15, 30),
             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
 
-out_file = "task6_cars_detected.jpg"
+out_file = "outputs/task6_cars_detected.jpg"
 cv2.imwrite(out_file, annotated)
 print(f"[SUCCESS] Detected {car_count} car(s). Saved to: {out_file}")
 print("-" * 60)

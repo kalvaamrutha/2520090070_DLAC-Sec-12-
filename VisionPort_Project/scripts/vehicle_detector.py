@@ -89,3 +89,4 @@ if __name__ == "__main__":
         print("Output saved to output_test.jpg")
     else:
         print("sample_traffic.jpg not found.")
+

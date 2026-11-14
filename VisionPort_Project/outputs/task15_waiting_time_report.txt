@@ -1,25 +1,13 @@
 ============================================================
-        VISIONPORT INTELLIGENT TRAFFIC MONITORING           
-             JUNCTION WAITING-TIME REPORT                   
+      VISIONPORT JUNCTION WAITING-TIME REPORT      
 ============================================================
 
-Generated Timestamp      : 2026-11-13 10:20:21
-Source Image/Feed        : images/traffic_street.jpg
-Traffic Signal Status    : RED
-Traffic Density Level    : LOW
-Density Multiplier       : 1.0x
-
-------------------------------------------------------------
-QUEUED VEHICLE BREAKDOWN & CLEARANCE CALCULATION:
-------------------------------------------------------------
- - Car          :  1 vehicles @ 2.5s/ea =   2.5s
- - Motorcycle   :  0 vehicles @ 1.5s/ea =   0.0s
- - Bicycle      :  1 vehicles @ 1.2s/ea =   1.2s
- - Bus          :  0 vehicles @ 5.0s/ea =   0.0s
- - Truck        :  1 vehicles @ 6.0s/ea =   6.0s
-------------------------------------------------------------
-Total Vehicles in Queue  : 3
-Base Signal Phase Delay  : 35.0 seconds
-Queue Discharge Time     : 9.7 seconds
-FINAL ESTIMATED WAIT TIME: 44.7 SECONDS (~0.74 min)
+Timestamp           : 2026-11-14 12:21:19
+Analyzed File       : images/sample_traffic.jpg
+Signal Status       : RED
+Total Vehicles      : 3
+Queue Discharge Time: 9.7s
+Signal Base Delay   : 35.0s
+Density Multiplier  : 1.0x
+ESTIMATED WAIT TIME : 44.7 SECONDS
 ============================================================

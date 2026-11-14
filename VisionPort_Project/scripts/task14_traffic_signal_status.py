@@ -10,9 +10,13 @@ print("=" * 60)
 print("VisionPort Task 14: Identify Traffic Signal Status")
 print("=" * 60)
 
-signal_img = "images/traffic_signal_red.jpg"
-if not os.path.exists(signal_img):
-    signal_img = "sample_traffic.jpg"
+os.makedirs("outputs", exist_ok=True)
+signal_imgs = ["images/traffic_signal_red.jpg", "sample_traffic.jpg", "images/sample_traffic.jpg"]
+signal_img = None
+for p in signal_imgs:
+    if os.path.exists(p):
+        signal_img = p
+        break
 
 img = cv2.imread(signal_img)
 h, w = img.shape[:2]
@@ -42,7 +46,7 @@ cv2.circle(annotated, (50, 65), 14, color_map[status], -1)
 cv2.putText(annotated, f"SIGNAL: {status}", (80, 72),
             cv2.FONT_HERSHEY_DUPLEX, 0.75, color_map[status], 2)
 
-out_file = "task14_signal_status.jpg"
+out_file = "outputs/task14_signal_status.jpg"
 cv2.imwrite(out_file, annotated)
 print(f"Analyzed Image  : {signal_img}")
 print(f"Detected Status : {status} (Pixel counts: {counts})")
