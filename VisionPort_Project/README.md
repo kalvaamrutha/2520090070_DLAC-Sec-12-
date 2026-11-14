@@ -7,7 +7,7 @@
 ![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-00FFFF?style=for-the-badge&logo=yolo&logoColor=black)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5.0.0-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-MPS%2FCUDA-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-![Tasks](https://img.shields.io/badge/Curriculum_Tasks-15%2F15_Passed-brightgreen?style=for-the-badge)
+![Tasks](https://img.shields.io/badge/Curriculum_Tasks-20%2F20_Passed-brightgreen?style=for-the-badge)
 
 </div>
 
@@ -97,27 +97,32 @@ http://localhost:8000
 
 ---
 
-## 📋 Comprehensive 15 Student Tasks Breakdown
+## 📋 Comprehensive 20 Student Tasks Breakdown
 
-Every task from the curriculum is implemented as an independent, modular script inside `scripts/` with verified artifacts saved to `outputs/` and `frames/`:
+Every task from the curriculum is implemented as an independent, modular script directly accessible in the project root and `scripts/`, with verified artifacts saved to `outputs/`:
 
 | Task No. | Task Description | Script Name | Expected Output | Status |
 |:---:|:---|:---|:---|:---:|
-| **Task 1** | Install Python, OpenCV and required libraries | `scripts/task1_environment.py` | Working Python environment report | ✅ Verified |
-| **Task 2** | Capture an image of a traffic signal using camera | `scripts/task2_traffic_camera_capture.py` | Traffic signal image capture | ✅ Verified |
-| **Task 3** | Read and display traffic images using OpenCV | `scripts/task3_read_display_traffic_image.py` | Image display window & metadata | ✅ Verified |
-| **Task 4** | Load and play a traffic video using OpenCV | `scripts/task4_load_play_traffic_video.py` | Video playback & FPS analysis | ✅ Verified |
-| **Task 5** | Extract individual frames from traffic videos | `scripts/task5_extract_video_frames.py` | Frames saved as individual images | ✅ Verified |
-| **Task 6** | Detect cars in a traffic video using YOLO | `scripts/task6_detect_cars_yolo.py` | Car detection with bounding boxes | ✅ Verified |
-| **Task 7** | Detect bikes, buses and trucks | `scripts/task7_detect_multiple_vehicles.py` | Multiple vehicle detection | ✅ Verified |
-| **Task 8** | Display vehicle names and confidence scores | `scripts/task8_display_labels_confidence.py` | Labelled detection output | ✅ Verified |
-| **Task 9** | Count the number of vehicles in a video frame | `scripts/task9_count_vehicles.py` | Vehicle count HUD panel | ✅ Verified |
-| **Task 10** | Calculate traffic density based on vehicle count | `scripts/task10_calculate_traffic_density.py` | Low, medium and high traffic badge | ✅ Verified |
-| **Task 11** | Detect traffic congestion at signal junctions | `scripts/task11_detect_congestion_alerts.py` | Congestion warning alerts & log | ✅ Verified |
-| **Task 12** | Track individual vehicles across video frames | `scripts/task12_track_vehicles.py` | Persistent vehicle tracking IDs | ✅ Verified |
-| **Task 13** | Calculate approximate vehicle speed | `scripts/task13_estimate_vehicle_speed.py` | Speed estimation (km/h) | ✅ Verified |
-| **Task 14** | Identify traffic signal status (red, yellow, green) | `scripts/task14_identify_traffic_signal.py` | Signal status detection (HSV) | ✅ Verified |
-| **Task 15** | Estimate traffic waiting time | `scripts/task15_estimate_waiting_time.py` | Waiting-time report (TXT & JSON) | ✅ Verified |
+| **Task 1** | Install Python, OpenCV and required libraries | `task1_setup_and_verify.py` | Working Python environment report | ✅ Verified |
+| **Task 2** | Capture an image of a traffic signal using camera | `task2_capture_traffic_signal.py` | Traffic signal image capture | ✅ Verified |
+| **Task 3** | Read and display traffic images using OpenCV | `task3_read_display_traffic_image.py` | Image display window & metadata | ✅ Verified |
+| **Task 4** | Load and play a traffic video using OpenCV | `task4_load_play_traffic_video.py` | Video playback & FPS analysis | ✅ Verified |
+| **Task 5** | Extract individual frames from traffic videos | `task5_extract_video_frames.py` | Frames saved as individual images | ✅ Verified |
+| **Task 6** | Detect cars in a traffic video using YOLO | `task6_detect_cars.py` | Car detection with bounding boxes | ✅ Verified |
+| **Task 7** | Detect bikes, buses and trucks | `task7_detect_multiple_vehicles.py` | Multiple vehicle detection | ✅ Verified |
+| **Task 8** | Display vehicle names and confidence scores | `task8_display_labels_confidence.py` | Labelled detection output | ✅ Verified |
+| **Task 9** | Count the number of vehicles in a video frame | `task9_count_vehicles.py` | Vehicle count HUD panel | ✅ Verified |
+| **Task 10** | Calculate traffic density based on vehicle count | `task10_traffic_density.py` | Low, medium and high traffic badge | ✅ Verified |
+| **Task 11** | Detect traffic congestion at signal junctions | `task11_traffic_congestion.py` | Congestion warning alerts & log | ✅ Verified |
+| **Task 12** | Track individual vehicles across video frames | `task12_track_vehicles.py` | Persistent vehicle tracking IDs | ✅ Verified |
+| **Task 13** | Calculate approximate vehicle speed | `task13_calculate_vehicle_speed.py` | Speed estimation (km/h) | ✅ Verified |
+| **Task 14** | Identify traffic signal status (red, yellow, green) | `task14_traffic_signal_status.py` | Signal status detection (HSV) | ✅ Verified |
+| **Task 15** | Estimate traffic waiting time | `task15_traffic_waiting_time.py` | Waiting-time report (TXT & JSON) | ✅ Verified |
+| **Task 16** | Count vehicles entering and leaving a traffic junction | `task16_entry_exit_vehicle_count.py` | Entry and exit vehicle count | ✅ Verified |
+| **Task 17** | Detect vehicles making wrong turns at intersections | `task17_wrong_turn_detection.py` | Wrong-turn detection | ✅ Verified |
+| **Task 18** | Identify vehicles moving in the wrong direction | `task18_wrong_way_vehicle_alerts.py` | Wrong-way vehicle alerts | ✅ Verified |
+| **Task 19** | Detect vehicles parked in restricted traffic areas | `task19_illegal_parking_detection.py` | Illegal parking detection | ✅ Verified |
+| **Task 20** | Detect two-wheelers carrying more than two persons | `task20_triple_riding_detection.py` | Triple-riding detection | ✅ Verified |
 
 ---
 
@@ -212,6 +217,49 @@ Every task from the curriculum is implemented as an independent, modular script 
   * Base signal delay $T_{\text{signal\_base}}$: RED = 35s, YELLOW = 10s, GREEN = 0s.
   * Density multiplier $\mu_{\text{density}}$: LOW = 1.0x, MEDIUM = 1.2x, HIGH = 1.5x.
 * **Output Artifact:** `outputs/task15_waiting_time_report.txt` and `outputs/task15_waiting_time_report.json`
+
+#### 🔹 Task 16: Entry and Exit Vehicle Count
+* **Script:** `python task16_entry_exit_vehicle_count.py`
+* **Mathematical Tripwire Formulation:**
+  A vehicle with centroid trajectory $P_t = (x_t, y_t)$ crosses horizontal counting tripwires $Y_{\text{entry}}$ and $Y_{\text{exit}}$:
+  $$\text{Entry Trigger} \iff y_{t-1} < Y_{\text{entry}} \le y_t, \quad \text{Exit Trigger} \iff y_{t-1} < Y_{\text{exit}} \le y_t$$
+  Each crossing vehicle is tracked with a persistent ID to guarantee single-event counting:
+  $$N_{\text{total}} = N_{\text{entry}} + N_{\text{exit}}$$
+* **Output Artifact:** `outputs/task16_entry_exit_count.jpg`
+
+#### 🔹 Task 17: Wrong-Turn Detection
+* **Script:** `python task17_wrong_turn_detection.py`
+* **Trajectory Heading Analysis:**
+  Computes the instantaneous velocity vector and turn angle across a window of $k$ consecutive frames:
+  $$\vec{v} = (\Delta x, \Delta y) = (x_t - x_{t-k}, y_t - y_{t-k}), \quad \theta_{\text{turn}} = \arctan2(\Delta y, \Delta x) \times \frac{180}{\pi}$$
+  If a vehicle in a designated straight-only lane initiates an unauthorized lateral turn $(|\Delta x| > \tau_{\text{lateral}})$ into cross-traffic, a high-severity alert is dispatched.
+* **Output Artifact:** `outputs/task17_wrong_turn_detection.jpg`
+
+#### 🔹 Task 18: Wrong-Way Vehicle Alerts
+* **Script:** `python task18_wrong_way_vehicle_alerts.py`
+* **Directional Alignment Model:**
+  Given the legal lane flow unit vector $\vec{u}_{\text{flow}} = (0, 1)$ (downward perspective), the vehicle's normalized motion vector $\hat{v} = \frac{\vec{v}}{\|\vec{v}\|}$ is projected via dot product:
+  $$\cos(\alpha) = \hat{v} \cdot \vec{u}_{\text{flow}}$$
+  A vehicle is classified as heading in the wrong direction when $\cos(\alpha) < 0$ ($\Delta y < 0$ in forward lanes), activating an audible/visual alarm overlay.
+* **Output Artifact:** `outputs/task18_wrong_way_alerts.jpg`
+
+#### 🔹 Task 19: Illegal Parking Detection
+* **Script:** `python task19_illegal_parking_detection.py`
+* **Spatio-Temporal Stationary Constraint:**
+  For a polygon-defined restricted zone $Z_{\text{restricted}}$, a vehicle with centroid $c(t)$ and bounding box $B(t)$ is evaluated:
+  $$c(t) \in Z_{\text{restricted}} \quad \text{and} \quad \|\vec{v}(t)\| < \epsilon \quad \forall t \in [t_{\text{stop}}, t_{\text{stop}} + T_{\text{threshold}}]$$
+  If $T_{\text{stop}} \ge 2.0\text{ seconds}$, an illegal parking violation citation is logged with bounding box highlighting.
+* **Output Artifact:** `outputs/task19_illegal_parking.jpg`
+
+#### 🔹 Task 20: Triple-Riding Detection
+* **Script:** `python task20_triple_riding_detection.py`
+* **Rider-to-Vehicle Spatial Association Model:**
+  For each detected two-wheeler (motorcycle/bicycle) bounding box $B_{\text{bike}} = [x_1, y_1, x_2, y_2]$, an expanded vertical rider zone $Z_{\text{rider}}$ is established:
+  $$Z_{\text{rider}} = [x_1 - \delta_x, y_1 - 0.8(y_2 - y_1), x_2 + \delta_x, y_2]$$
+  The total number of riders $K_{\text{riders}}$ is computed by summing all detected person centroids $c_p$ inside $Z_{\text{rider}}$:
+  $$K_{\text{riders}} = \sum_{p \in \text{Persons}} \mathbb{I}(c_p \in Z_{\text{rider}})$$
+  If $K_{\text{riders}} > 2$, a **Triple-Riding Safety Violation** is flagged.
+* **Output Artifact:** `outputs/task20_triple_riding.jpg`
 
 ---
 

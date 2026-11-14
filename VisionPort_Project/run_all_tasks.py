@@ -23,11 +23,16 @@ TASKS = [
     (13, "Speed Estimation",               "task13_calculate_vehicle_speed.py", "outputs/task13_speed_estimation.jpg"),
     (14, "Traffic Signal Identification",  "task14_traffic_signal_status.py",   "outputs/task14_signal_status.jpg"),
     (15, "Waiting-Time Estimation Report", "task15_traffic_waiting_time.py",    "outputs/task15_waiting_time_report.txt"),
+    (16, "Entry and Exit Vehicle Count",   "task16_entry_exit_vehicle_count.py","outputs/task16_entry_exit_count.jpg"),
+    (17, "Wrong-Turn Detection",           "task17_wrong_turn_detection.py",    "outputs/task17_wrong_turn_detection.jpg"),
+    (18, "Wrong-Way Vehicle Alerts",       "task18_wrong_way_vehicle_alerts.py","outputs/task18_wrong_way_alerts.jpg"),
+    (19, "Illegal Parking Detection",      "task19_illegal_parking_detection.py","outputs/task19_illegal_parking.jpg"),
+    (20, "Triple-Riding Detection",        "task20_triple_riding_detection.py", "outputs/task20_triple_riding.jpg"),
 ]
 
 def run_pipeline():
     print("=" * 80)
-    print("       VISIONPORT - ALL 15 TASKS EXECUTION & VERIFICATION PIPELINE       ")
+    print("       VISIONPORT - ALL 20 TASKS EXECUTION & VERIFICATION PIPELINE       ")
     print("=" * 80)
     
     python_bin = sys.executable
