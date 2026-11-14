@@ -1,0 +1,13 @@
+============================================================
+      VISIONPORT JUNCTION WAITING-TIME REPORT      
+============================================================
+
+Timestamp           : 2026-11-14 12:13:58
+Analyzed File       : sample_traffic.jpg
+Signal Status       : RED
+Total Vehicles      : 3
+Queue Discharge Time: 9.7s
+Signal Base Delay   : 35.0s
+Density Multiplier  : 1.0x
+ESTIMATED WAIT TIME : 44.7 SECONDS
+============================================================
