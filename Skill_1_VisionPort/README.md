@@ -71,7 +71,7 @@
 Clone the repository and install all required dependencies:
 ```bash
 git clone https://github.com/kalvaamrutha/2520090070_DLAC-Sec-12-.git
-cd 2520090070_DLAC-Sec-12-/VisionPort_Project
+cd 2520090070_DLAC-Sec-12-/Skill_1_VisionPort
 pip install -r requirements.txt
 ```
 
@@ -333,7 +333,7 @@ Test pre-loaded scenarios without uploading files:
 ## 📁 Repository Directory Structure
 
 ```
-VisionPort_Project/
+Skill_1_VisionPort/
 ├── main.py                             # Enhanced FastAPI backend server
 ├── index.html / templates/index.html   # VisionPort Live Web Dashboard
 ├── run_all_tasks.py                    # Master pipeline runner for Tasks 1 to 15
