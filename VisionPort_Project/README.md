@@ -75,12 +75,12 @@ cd 2520090070_DLAC-Sec-12-/VisionPort_Project
 pip install -r requirements.txt
 ```
 
-### 2. Run All 15 Tasks Verification Pipeline
-Execute the automated test pipeline to run and verify all 15 student tasks in sequence:
+### 2. Run All 20 Tasks Verification Pipeline
+Execute the automated test pipeline to run and verify all 20 student tasks in sequence:
 ```bash
 python run_all_tasks.py
 ```
-*Expected Output:* An executive summary table displaying `✓ PASS` for all 15 tasks in ~20 seconds.
+*Expected Output:* An executive summary table displaying `✓ PASS` for all 20 tasks in ~33 seconds.
 
 ### 3. Launch the VisionPort Live Web Dashboard
 Start the FastAPI server:
